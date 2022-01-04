@@ -1,19 +1,22 @@
 import type { AppProps } from 'next/app';
-import { ChakraProvider } from '@chakra-ui/react';
+import PlausibleProvider from 'next-plausible';
 import { SessionProvider } from 'next-auth/react';
+import { ChakraProvider } from '@chakra-ui/react';
 
 import theme from '../styles/theme';
 import Layout from '../layout';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
-    <ChakraProvider theme={theme}>
+    <PlausibleProvider domain="allmyserials.com" trackLocalhost={true}>
       <SessionProvider session={session}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <ChakraProvider theme={theme}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ChakraProvider>
       </SessionProvider>
-    </ChakraProvider>
+    </PlausibleProvider>
   );
 }
 
