@@ -11,7 +11,8 @@ const global = {
 };
 
 const config: ThemeConfig = {
-  useSystemColorMode: true,
+  initialColorMode: 'system',
+  useSystemColorMode: false,
 };
 
 const theme: ThemeConfig = extendTheme({ config, global });
