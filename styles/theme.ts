@@ -11,7 +11,7 @@ const global = {
 };
 
 const config: ThemeConfig = {
-  initialColorMode: 'system',
+  initialColorMode: 'light',
   useSystemColorMode: false,
 };
 
