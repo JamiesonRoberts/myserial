@@ -11,16 +11,17 @@ import {
   DrawerOverlay,
   Flex,
   GridItem,
-  Link,
   SimpleGrid,
   Spacer,
+  Text,
   useColorMode,
   useColorModeValue,
   useDisclosure,
+  useMediaQuery,
+  useToken,
   VisuallyHidden,
 } from '@chakra-ui/react';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import NextLink from 'next/link';
 import {
   HamburgerIcon,
   LockIcon,
@@ -29,18 +30,29 @@ import {
   UnlockIcon,
 } from '@chakra-ui/icons';
 import { Logo } from './Icons';
+import SimpleLink from './SimpleLink';
 
-type HeaderProps = GridItemProps & {
-  isDashboard: boolean;
-};
-
-export default function Header(props: HeaderProps) {
+export default function Header(props: GridItemProps) {
   const { data: session } = useSession();
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [sm] = useToken('breakpoints', ['sm']);
+  const [isGreaterThanSmallScreen] = useMediaQuery(`(min-width: ${sm})`);
 
   const navBarBg = useColorModeValue('gray.900', 'white');
-  // const navBarColor = useColorModeValue('white', 'gray.900');
+  const navBarColor = useColorModeValue('white', 'gray.900');
+  const menuBarColor = useColorModeValue('gray.900', 'white');
+
+  const LogoText = () => {
+    if (isGreaterThanSmallScreen) {
+      return (
+        <Text fontSize="xl" fontWeight={700}>
+          All My Serials
+        </Text>
+      );
+    }
+    return <VisuallyHidden>All My Serials</VisuallyHidden>;
+  };
 
   return (
     <>
@@ -54,12 +66,17 @@ export default function Header(props: HeaderProps) {
         justifyContent="space-between"
         alignItems="center"
       >
-        <NextLink href="/" passHref>
-          <Link>
-            <Logo width="auto" height="3em" color="black" />
-            <VisuallyHidden>All My Serials</VisuallyHidden>
-          </Link>
-        </NextLink>
+        <SimpleLink
+          href={!!session ? '/dasboard' : '/'}
+          display="flex"
+          alignItems="center"
+          color={navBarColor}
+        >
+          <>
+            <Logo width="auto" height="3em" pr={{ base: 0, sm: 4 }} />
+            <LogoText />
+          </>
+        </SimpleLink>
         <ButtonGroup>
           {!session ? (
             <Button
@@ -86,26 +103,20 @@ export default function Header(props: HeaderProps) {
         <DrawerContent>
           <DrawerCloseButton size="lg" top={4} />
           <DrawerHeader px={6} py={4}>
-            <Logo width="auto" height="2em" color="gray.50" pr={2} /> Menu
+            <Logo width="auto" height="2em" color={menuBarColor} pr={2} /> Menu
           </DrawerHeader>
           <DrawerBody>
             <SimpleGrid columns={1} spacing={4}>
-              <NextLink href="/" passHref>
-                <Button variant="outline" onClick={onClose}>
-                  Home
-                </Button>
-              </NextLink>
-              <NextLink href="/faq" passHref>
-                <Button variant="outline" onClick={onClose}>
-                  FAQ
-                </Button>
-              </NextLink>
+              <SimpleLink href="/" as="a" onClick={onClose}>
+                Home
+              </SimpleLink>
+              <SimpleLink href="/faq" as="a" onClick={onClose}>
+                FAQ
+              </SimpleLink>
               {!!session ? (
-                <NextLink href="/dashboard" passHref>
-                  <Button variant="outline" onClick={onClose}>
-                    My Dashboard
-                  </Button>
-                </NextLink>
+                <SimpleLink href="/dashboard" as="a" onClick={onClose}>
+                  My Dashboard
+                </SimpleLink>
               ) : (
                 <></>
               )}
@@ -114,6 +125,7 @@ export default function Header(props: HeaderProps) {
           <DrawerFooter>
             <Flex width="100%" justifyContent="space-around">
               <Button
+                as="a"
                 flex="1 0 auto"
                 onClick={() => (!!session ? signOut() : signIn())}
                 rightIcon={!!session ? <LockIcon /> : <UnlockIcon />}
