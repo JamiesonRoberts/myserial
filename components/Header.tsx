@@ -67,7 +67,7 @@ export default function Header(props: GridItemProps) {
         alignItems="center"
       >
         <SimpleLink
-          href={!!session ? '/dasboard' : '/'}
+          href={!!session ? '/dashboard' : '/'}
           display="flex"
           alignItems="center"
           color={navBarColor}
@@ -107,7 +107,11 @@ export default function Header(props: GridItemProps) {
           </DrawerHeader>
           <DrawerBody>
             <SimpleGrid columns={1} spacing={4}>
-              <SimpleLink href="/" as="a" onClick={onClose}>
+              <SimpleLink
+                href={!!session ? '/dashboard' : '/'}
+                as="a"
+                onClick={onClose}
+              >
                 Home
               </SimpleLink>
               <SimpleLink href="/faq" as="a" onClick={onClose}>
