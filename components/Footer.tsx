@@ -36,8 +36,9 @@ export default function Footer(props: GridItemProps) {
           <GridItem colStart={2}>
             <Grid
               templateRows="repeat(5, auto)"
-              templateColumns={{ base: 'auto', md: '3fr auto 1fr' }}
+              templateColumns={{ base: 'auto', md: '2fr 1fr', lg: '3fr 1fr' }}
               gap={6}
+              width="100%"
             >
               <GridItem>
                 <SimpleLink
@@ -54,14 +55,14 @@ export default function Footer(props: GridItemProps) {
                   </>
                 </SimpleLink>
               </GridItem>
-              {!isGreaterThanMediumScreen ? (
-                <></>
-              ) : (
-                <GridItem rowSpan={4}>
-                  <Divider orientation="vertical" />
-                </GridItem>
-              )}
-              <GridItem rowSpan={{ base: 1, md: 4 }}>
+              <GridItem
+                rowSpan={{ base: 1, md: 5 }}
+                borderLeftColor="gray.500"
+                borderLeftStyle="solid"
+                borderLeftWidth="1px"
+                pl={6}
+                pb={4}
+              >
                 <Text
                   width="auto"
                   height="3em"
