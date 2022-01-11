@@ -26,6 +26,7 @@ const nextConfig = withPlugins(
     }),
   ],
   {
+    swcMinify: true,
     reactStrictMode: true,
     i18n: {
       locales: ['en-CA'],

@@ -8,7 +8,7 @@ import Layout from '../layout';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
-    <PlausibleProvider domain="allmyserials.com">
+    <PlausibleProvider domain="allmyserials.com" trackOutboundLinks={true}>
       <SessionProvider session={session}>
         <ChakraProvider theme={theme}>
           <Layout>

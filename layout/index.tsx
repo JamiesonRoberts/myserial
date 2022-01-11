@@ -1,9 +1,12 @@
 import type { ReactElement } from 'react';
+import { useEffect, useState } from 'react';
 
-import { Button, Grid, GridItem } from '@chakra-ui/react';
-import { signIn, signOut, useSession } from 'next-auth/react';
-
-import styles from '../styles/Home.module.css';
+import { Button, Flex, Grid, GridItem } from '@chakra-ui/react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
+import DashboardMenu from '../components/DashboardMenu';
 
 interface LayoutProps {
   children?: ReactElement;
@@ -11,47 +14,54 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const { data: session } = useSession();
+  const router = useRouter();
+  const [isDashboard, setDashboard] = useState(false);
+
+  useEffect(() => {
+    const layoutUpdate = (url: string) => {
+      setDashboard(url.includes('dashboard'));
+    };
+
+    router.events.on('routeChangeComplete', layoutUpdate);
+  }, [router.events]);
+
+  const TabBar = () => {
+    if (!!session) {
+      if (!isDashboard) {
+        return (
+          <Flex
+            position="sticky"
+            bottom={0}
+            zIndex={100}
+            justifyContent="center"
+          >
+            <Button>My Dashboard</Button>
+          </Flex>
+        );
+      }
+
+      return (
+        <Flex position="sticky" bottom={0} zIndex={100}>
+          <DashboardMenu />
+        </Flex>
+      );
+    }
+
+    return <></>;
+  };
+
   return (
-    <Grid
-      templateRows="auto 1fr auto"
-      templateColumns="auto minmax(auto, 1600px) auto"
-      minH="100vh"
-    >
-      <GridItem
-        as="nav"
-        position="sticky"
-        top={0}
-        left={0}
-        right={0}
-        display="flex"
-        flexWrap="wrap"
-        justifyContent="flex-end"
-        alignContent="center"
-        colStart={1}
-        colSpan={3}
-        rowStart={1}
-      >
-        <Button onClick={() => signIn()} display={!!session ? 'none' : 'block'}>
-          Sign In
-        </Button>
-        <Button
-          onClick={() => signOut()}
-          display={!!session ? 'block' : 'none'}
-        >
-          Sign Out
-        </Button>
+    <Grid templateRows="auto 1fr auto" templateColumns="auto" minH="100vh">
+      <Header position="sticky" as="header" top={0} left={0} right={0} />
+
+      <GridItem as={'main'}>
+        <Grid templateColumns={'auto minmax(auto, 1200px) auto'}>
+          <GridItem colStart={2}>{children}</GridItem>
+        </Grid>
+        <TabBar />
       </GridItem>
 
-      <GridItem as={'main'} colStart={2} rowStart={2}>
-        {children}
-      </GridItem>
-
-      <GridItem
-        as={'footer'}
-        colStart={2}
-        rowStart={3}
-        className={styles.footer}
-      />
+      <Footer as={'footer'} />
     </Grid>
   );
 }
