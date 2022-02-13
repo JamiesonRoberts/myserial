@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react';
 import { useEffect, useState } from 'react';
 
-import { Button, Flex, Grid, GridItem } from '@chakra-ui/react';
+import { Flex, Grid, GridItem } from '@chakra-ui/react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useRouter } from 'next/router';
@@ -26,20 +26,7 @@ export default function Layout({ children }: LayoutProps) {
   }, [router.events]);
 
   const TabBar = () => {
-    if (!!session) {
-      if (!isDashboard) {
-        return (
-          <Flex
-            position="sticky"
-            bottom={0}
-            zIndex={100}
-            justifyContent="center"
-          >
-            <Button>My Dashboard</Button>
-          </Flex>
-        );
-      }
-
+    if (isDashboard && session) {
       return (
         <Flex position="sticky" bottom={0} zIndex={100}>
           <DashboardMenu />
@@ -56,7 +43,9 @@ export default function Layout({ children }: LayoutProps) {
 
       <GridItem as={'main'}>
         <Grid templateColumns={'auto minmax(auto, 1200px) auto'}>
-          <GridItem colStart={2}>{children}</GridItem>
+          <GridItem colStart={2} overflow="hidden">
+            {children}
+          </GridItem>
         </Grid>
         <TabBar />
       </GridItem>

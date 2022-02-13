@@ -145,7 +145,7 @@ export default function Footer(props: GridItemProps) {
                 <></>
               )}
               <GridItem color="gray.300">
-                <Text pb={1}>Simple personal serial number tracking.</Text>
+                <Text pb={1}>Simple personal item serial number tracking.</Text>
                 <Text>
                   Built by{' '}
                   <SimpleLink
