@@ -42,7 +42,7 @@ export default function Footer(props: GridItemProps) {
             >
               <GridItem>
                 <SimpleLink
-                  href={!!session ? '/dashboard' : '/'}
+                  href="/"
                   as="a"
                   display="inline-flex"
                   alignItems="center"
@@ -76,24 +76,23 @@ export default function Footer(props: GridItemProps) {
                 </Text>
                 <List spacing={3}>
                   <ListItem>
-                    <SimpleLink
-                      href={!!session ? '/dashboard' : '/'}
-                      as="a"
-                      display="inline-flex"
-                      alignItems="center"
-                    >
+                    <SimpleLink href="/" as="a">
                       Home
                     </SimpleLink>
                   </ListItem>
                   <ListItem>
-                    <SimpleLink
-                      href="faq"
-                      as="a"
-                      display="inline-flex"
-                      alignItems="center"
-                    >
+                    <SimpleLink href="/#faq" as="a">
                       FAQ
                     </SimpleLink>
+                  </ListItem>
+                  <ListItem>
+                    {!!session ? (
+                      <SimpleLink href="/dashboard" as="a">
+                        My Dashboard
+                      </SimpleLink>
+                    ) : (
+                      <></>
+                    )}
                   </ListItem>
                   <ListItem>
                     <SimpleLink
