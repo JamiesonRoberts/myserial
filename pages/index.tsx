@@ -99,6 +99,7 @@ const Home: NextPage = () => {
                 maxWidth="4rem"
                 lineHeight={1}
                 textAlign="center"
+                paddingTop={1}
               >
                 Step 1
               </Text>
@@ -131,6 +132,7 @@ const Home: NextPage = () => {
                 maxWidth="4rem"
                 lineHeight={1}
                 textAlign="center"
+                paddingTop={1}
               >
                 Step 2
               </Text>
@@ -162,6 +164,7 @@ const Home: NextPage = () => {
                 maxWidth="4rem"
                 lineHeight={1}
                 textAlign="center"
+                paddingTop={1}
               >
                 Step 3
               </Text>
