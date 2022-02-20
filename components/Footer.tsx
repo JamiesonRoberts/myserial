@@ -151,6 +151,8 @@ export default function Footer(props: GridItemProps) {
                     href="https://twitter.com/jamiesonroberts"
                     isExternal
                     color="white"
+                    fontWeight={500}
+                    textDecoration="underline"
                   >
                     @JamiesonRoberts
                   </SimpleLink>
@@ -176,6 +178,8 @@ export default function Footer(props: GridItemProps) {
                     isExternal
                     as="a"
                     color="white"
+                    fontWeight={500}
+                    textDecoration="underline"
                   >
                     Plausible
                   </SimpleLink>
@@ -185,6 +189,8 @@ export default function Footer(props: GridItemProps) {
                     isExternal
                     as="a"
                     color="white"
+                    fontWeight={500}
+                    textDecoration="underline"
                   >
                     open to the public for transparency.
                   </SimpleLink>

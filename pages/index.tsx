@@ -32,14 +32,14 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Flex
-        minHeight={{ base: 'auto', md: '40vh', lg: '50vh' }}
+        minHeight={{ base: 'auto', md: '30vh', lg: '40vh' }}
         alignItems="center"
-        flexDirection={{ base: 'column', md: 'row' }}
+        justifyContent="center"
         marginBottom={3}
         paddingY={6}
         paddingX={4}
       >
-        <Box padding={6} textAlign="center" width={{ base: '100%', md: '50%' }}>
+        <Box padding={6} textAlign="center">
           <Heading as="h1" size="2xl">
             All My Serials
           </Heading>
@@ -56,17 +56,11 @@ const Home: NextPage = () => {
             </SimpleLink>
           )}
         </Box>
-        <Image
-          src="/home-hero.jpg"
-          borderRadius="50%"
-          display={{ base: 'none', md: 'block' }}
-          boxSize={{ md: '30vh', lg: '40vh' }}
-        />
       </Flex>
       <Box
         marginY={4}
         paddingY={8}
-        paddingX={4}
+        paddingX={6}
         borderTopWidth="1px"
         borderTopColor="gray.200"
       >
@@ -82,9 +76,8 @@ const Home: NextPage = () => {
           >
             <Flex
               borderRadius="50%"
-              borderColor="gray.400"
-              borderStyle="solid"
-              borderWidth={4}
+              backgroundColor="gray.600"
+              color="white"
               height="5rem"
               flexBasis="5rem"
               flexGrow={0}
@@ -115,9 +108,8 @@ const Home: NextPage = () => {
           >
             <Flex
               borderRadius="50%"
-              borderColor="gray.400"
-              borderStyle="solid"
-              borderWidth={4}
+              backgroundColor="gray.600"
+              color="white"
               height="5rem"
               flexBasis="5rem"
               flexGrow={0}
@@ -147,9 +139,8 @@ const Home: NextPage = () => {
           >
             <Flex
               borderRadius="50%"
-              borderColor="gray.400"
-              borderStyle="solid"
-              borderWidth={4}
+              backgroundColor="gray.600"
+              color="white"
               height="5rem"
               flexBasis="5rem"
               flexGrow={0}
@@ -177,7 +168,7 @@ const Home: NextPage = () => {
       <Box
         marginTop={4}
         paddingY={8}
-        paddingX={4}
+        paddingX={6}
         borderTopWidth="1px"
         borderTopColor="gray.200"
         id="faq"
@@ -263,7 +254,14 @@ const Home: NextPage = () => {
           can&lsquo;t exist on their own without help from the community. The
           code for this project is hosted openly on Github, you can log bugs,
           add feature requests, or contribute in other ways depending on your
-          skill set. You can find links in the footer for more details.
+          skill set. It is primarily created and maintained by{' '}
+          <SimpleLink
+            href="https://twitter.com/jamiesonroberts"
+            isExternal
+            textDecoration="underline"
+          >
+            @JamiesonRoberts
+          </SimpleLink>
         </Text>
       </Box>
     </>
