@@ -21,7 +21,7 @@ import {
   useToken,
   VisuallyHidden,
 } from '@chakra-ui/react';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import {
   HamburgerIcon,
   LockIcon,
@@ -67,7 +67,7 @@ export default function Header(props: GridItemProps) {
         alignItems="center"
       >
         <SimpleLink
-          href={!!session ? '/dashboard' : '/'}
+          href="/"
           display="flex"
           alignItems="center"
           color={navBarColor}
@@ -79,13 +79,14 @@ export default function Header(props: GridItemProps) {
         </SimpleLink>
         <ButtonGroup>
           {!session ? (
-            <Button
-              onClick={() => signIn()}
-              rightIcon={<UnlockIcon />}
-              colorScheme={colorMode === 'light' ? 'gray' : 'blackAlpha'}
-            >
-              Sign In
-            </Button>
+            // <Button
+            //   onClick={() => signIn()}
+            //   rightIcon={<UnlockIcon />}
+            //   colorScheme={colorMode === 'light' ? 'gray' : 'blackAlpha'}
+            // >
+            //   Sign In
+            // </Button>
+            <></>
           ) : (
             <></>
           )}
@@ -107,14 +108,10 @@ export default function Header(props: GridItemProps) {
           </DrawerHeader>
           <DrawerBody>
             <SimpleGrid columns={1} spacing={4}>
-              <SimpleLink
-                href={!!session ? '/dashboard' : '/'}
-                as="a"
-                onClick={onClose}
-              >
+              <SimpleLink href="/" as="a" onClick={onClose}>
                 Home
               </SimpleLink>
-              <SimpleLink href="/faq" as="a" onClick={onClose}>
+              <SimpleLink href="/#faq" as="a" onClick={onClose}>
                 FAQ
               </SimpleLink>
               {!!session ? (
@@ -131,10 +128,16 @@ export default function Header(props: GridItemProps) {
               <Button
                 as="a"
                 flex="1 0 auto"
-                onClick={() => (!!session ? signOut() : signIn())}
+                onClick={() =>
+                  !!session
+                    ? signOut()
+                    : () => {
+                        return null;
+                      }
+                }
                 rightIcon={!!session ? <LockIcon /> : <UnlockIcon />}
               >
-                {!!session ? 'Sign Out' : 'Sign In'}
+                {!!session ? 'Sign Out' : 'Sign Up Coming Soon'}
               </Button>
               <Spacer />
               <Button

@@ -42,7 +42,7 @@ export default function Footer(props: GridItemProps) {
             >
               <GridItem>
                 <SimpleLink
-                  href={!!session ? '/dashboard' : '/'}
+                  href="/"
                   as="a"
                   display="inline-flex"
                   alignItems="center"
@@ -76,24 +76,23 @@ export default function Footer(props: GridItemProps) {
                 </Text>
                 <List spacing={3}>
                   <ListItem>
-                    <SimpleLink
-                      href={!!session ? '/dashboard' : '/'}
-                      as="a"
-                      display="inline-flex"
-                      alignItems="center"
-                    >
+                    <SimpleLink href="/" as="a">
                       Home
                     </SimpleLink>
                   </ListItem>
                   <ListItem>
-                    <SimpleLink
-                      href="faq"
-                      as="a"
-                      display="inline-flex"
-                      alignItems="center"
-                    >
+                    <SimpleLink href="/#faq" as="a">
                       FAQ
                     </SimpleLink>
+                  </ListItem>
+                  <ListItem>
+                    {!!session ? (
+                      <SimpleLink href="/dashboard" as="a">
+                        My Dashboard
+                      </SimpleLink>
+                    ) : (
+                      <></>
+                    )}
                   </ListItem>
                   <ListItem>
                     <SimpleLink
@@ -145,13 +144,15 @@ export default function Footer(props: GridItemProps) {
                 <></>
               )}
               <GridItem color="gray.300">
-                <Text pb={1}>Simple personal serial number tracking.</Text>
+                <Text pb={1}>Simple personal item serial number tracking.</Text>
                 <Text>
                   Built by{' '}
                   <SimpleLink
                     href="https://twitter.com/jamiesonroberts"
                     isExternal
                     color="white"
+                    fontWeight={500}
+                    textDecoration="underline"
                   >
                     @JamiesonRoberts
                   </SimpleLink>
@@ -177,6 +178,8 @@ export default function Footer(props: GridItemProps) {
                     isExternal
                     as="a"
                     color="white"
+                    fontWeight={500}
+                    textDecoration="underline"
                   >
                     Plausible
                   </SimpleLink>
@@ -186,6 +189,8 @@ export default function Footer(props: GridItemProps) {
                     isExternal
                     as="a"
                     color="white"
+                    fontWeight={500}
+                    textDecoration="underline"
                   >
                     open to the public for transparency.
                   </SimpleLink>
