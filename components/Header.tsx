@@ -21,7 +21,7 @@ import {
   useToken,
   VisuallyHidden,
 } from '@chakra-ui/react';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import {
   HamburgerIcon,
   LockIcon,
@@ -79,13 +79,14 @@ export default function Header(props: GridItemProps) {
         </SimpleLink>
         <ButtonGroup>
           {!session ? (
-            <Button
-              onClick={() => signIn()}
-              rightIcon={<UnlockIcon />}
-              colorScheme={colorMode === 'light' ? 'gray' : 'blackAlpha'}
-            >
-              Sign In
-            </Button>
+            // <Button
+            //   onClick={() => signIn()}
+            //   rightIcon={<UnlockIcon />}
+            //   colorScheme={colorMode === 'light' ? 'gray' : 'blackAlpha'}
+            // >
+            //   Sign In
+            // </Button>
+            <></>
           ) : (
             <></>
           )}
@@ -127,10 +128,16 @@ export default function Header(props: GridItemProps) {
               <Button
                 as="a"
                 flex="1 0 auto"
-                onClick={() => (!!session ? signOut() : signIn())}
+                onClick={() =>
+                  !!session
+                    ? signOut()
+                    : () => {
+                        return null;
+                      }
+                }
                 rightIcon={!!session ? <LockIcon /> : <UnlockIcon />}
               >
-                {!!session ? 'Sign Out' : 'Sign In'}
+                {!!session ? 'Sign Out' : 'Sign Up Coming Soon'}
               </Button>
               <Spacer />
               <Button

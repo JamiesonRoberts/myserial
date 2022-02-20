@@ -46,8 +46,8 @@ const Home: NextPage = () => {
             Simple personal item serial number tracking.
           </Text>
           {!session ? (
-            <SimpleLink href={'/login'}>
-              <Button>Sign Up Now</Button>
+            <SimpleLink href={'/'}>
+              <Button>Sign Up Coming Soon</Button>
             </SimpleLink>
           ) : (
             <SimpleLink href={'/dashboard'}>
