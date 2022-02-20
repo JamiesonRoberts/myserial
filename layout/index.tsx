@@ -39,7 +39,14 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <Grid templateRows="auto 1fr auto" templateColumns="auto" minH="100vh">
-      <Header position="sticky" as="header" top={0} left={0} right={0} />
+      <Header
+        position="sticky"
+        as="header"
+        top={0}
+        left={0}
+        right={0}
+        zIndex={1}
+      />
 
       <GridItem as={'main'}>
         <Grid templateColumns={'auto minmax(auto, 1200px) auto'}>
