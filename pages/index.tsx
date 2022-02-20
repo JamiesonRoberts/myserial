@@ -7,7 +7,6 @@ import {
   Heading,
   Text,
   Flex,
-  Image,
   Divider,
   List,
   ListItem,
