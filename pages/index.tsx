@@ -175,7 +175,7 @@ const Home: NextPage = () => {
         <Heading as="h2" size="xl" marginBottom={4}>
           FAQ
         </Heading>
-        <Heading as="h3" size="lg" marginBottom={2}>
+        <Heading as="h3" size="md" marginBottom={2}>
           What does it cost?
         </Heading>
         <Text>
@@ -193,7 +193,7 @@ const Home: NextPage = () => {
           .
         </Text>
         <Divider marginBottom={4} marginTop={4} />
-        <Heading as="h3" size="lg" marginBottom={2}>
+        <Heading as="h3" size="md" marginBottom={2}>
           How can I help?
         </Heading>
         <Text>
@@ -204,7 +204,7 @@ const Home: NextPage = () => {
           skill set.
         </Text>
         <Divider marginBottom={4} marginTop={4} />
-        <Heading as="h3" size="lg" marginBottom={2}>
+        <Heading as="h3" size="md" marginBottom={2}>
           Whats the feature roadmap?
         </Heading>
         <Text>
@@ -218,7 +218,7 @@ const Home: NextPage = () => {
           </SimpleLink>
         </Text>
         <Divider marginBottom={4} marginTop={4} />
-        <Heading as="h3" size="lg" marginBottom={2}>
+        <Heading as="h3" size="md" marginBottom={2}>
           What about my data and identity?
         </Heading>
         <Text mb={4}>
@@ -245,7 +245,7 @@ const Home: NextPage = () => {
           </ListItem>
         </List>
         <Divider marginBottom={4} marginTop={4} />
-        <Heading as="h3" size="lg" marginBottom={2}>
+        <Heading as="h3" size="md" marginBottom={2}>
           Who made this?
         </Heading>
         <Text>
