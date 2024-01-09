@@ -10,12 +10,10 @@ import {
   useMediaQuery,
   useToken,
 } from '@chakra-ui/react';
-import { Github, Logo, Plausible, Twitter } from './Icons';
-import { useSession } from 'next-auth/react';
+import { Github, Logo, Twitter } from './Icons';
 import SimpleLink from './SimpleLink';
 
 export default function Footer(props: GridItemProps) {
-  const { data: session } = useSession();
   const [md] = useToken('breakpoints', ['md']);
   const [isGreaterThanMediumScreen] = useMediaQuery(`(min-width: ${md})`);
 
@@ -86,15 +84,6 @@ export default function Footer(props: GridItemProps) {
                     </SimpleLink>
                   </ListItem>
                   <ListItem>
-                    {!!session ? (
-                      <SimpleLink href="/dashboard" as="a">
-                        My Dashboard
-                      </SimpleLink>
-                    ) : (
-                      <></>
-                    )}
-                  </ListItem>
-                  <ListItem>
                     <SimpleLink
                       href="https://github.com/JamiesonRoberts/allmyserials"
                       as="a"
@@ -105,19 +94,6 @@ export default function Footer(props: GridItemProps) {
                       <>
                         <Github mr={2} />
                         Code
-                      </>
-                    </SimpleLink>
-                  </ListItem>
-                  <ListItem>
-                    <SimpleLink
-                      href="https://plausible.io/allmyserials.com"
-                      as="a"
-                      display="inline-flex"
-                      alignItems="center"
-                      isExternal
-                    >
-                      <>
-                        <Plausible mr={2} /> Analytics Dashboard
                       </>
                     </SimpleLink>
                   </ListItem>
@@ -170,30 +146,6 @@ export default function Footer(props: GridItemProps) {
                   does not create any personal identifiers for tracking
                   purposes. It does not collect any personally identifiable
                   information unless you create an account.
-                </Text>
-                <Text>
-                  Analytics data is collected using{' '}
-                  <SimpleLink
-                    href={'https://plausible.io/'}
-                    isExternal
-                    as="a"
-                    color="white"
-                    fontWeight={500}
-                    textDecoration="underline"
-                  >
-                    Plausible
-                  </SimpleLink>
-                  , and the analytics dashboard is{' '}
-                  <SimpleLink
-                    href="https://plausible.io/allmyserials.com"
-                    isExternal
-                    as="a"
-                    color="white"
-                    fontWeight={500}
-                    textDecoration="underline"
-                  >
-                    open to the public for transparency.
-                  </SimpleLink>
                 </Text>
               </GridItem>
             </Grid>

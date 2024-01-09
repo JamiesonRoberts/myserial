@@ -13,11 +13,9 @@ import {
   ListIcon,
 } from '@chakra-ui/react';
 import SimpleLink from '../components/SimpleLink';
-import { useSession } from 'next-auth/react';
 import { WarningTwoIcon } from '@chakra-ui/icons';
 
 const Home: NextPage = () => {
-  const { data: session } = useSession();
   return (
     <>
       <Head>
@@ -45,15 +43,7 @@ const Home: NextPage = () => {
           <Text paddingBottom={5}>
             Simple personal item serial number tracking.
           </Text>
-          {!session ? (
-            <SimpleLink href={'/'}>
-              <Button>Sign Up Coming Soon</Button>
-            </SimpleLink>
-          ) : (
-            <SimpleLink href={'/dashboard'}>
-              <Button>My Dashboard</Button>
-            </SimpleLink>
-          )}
+          <Button disabled={true}>Sign Up Coming Soon</Button>
         </Box>
       </Flex>
       <Box
