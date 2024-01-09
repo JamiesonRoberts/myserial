@@ -1,5 +1,4 @@
 import type { ReactElement } from 'react';
-import NextLink from 'next/link';
 import { Link, LinkProps } from '@chakra-ui/react';
 
 type SimpleLinkProps = LinkProps & {
