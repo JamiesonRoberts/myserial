@@ -13,8 +13,8 @@ export default function SimpleLink({
   ...rest
 }: SimpleLinkProps) {
   return (
-    <NextLink href={href} passHref>
-      <Link {...rest}>{children}</Link>
-    </NextLink>
+    <Link {...rest} href={href}>
+      {children}
+    </Link>
   );
 }
